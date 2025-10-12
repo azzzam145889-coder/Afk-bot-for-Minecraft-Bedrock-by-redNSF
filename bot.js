@@ -1,35 +1,28 @@
-// Minecraft Bedrock AFK Bot (يعمل على Render بدون raknet-native)
+import { createClient } from "bedrock-protocol";
 
-import { createClient } from 'bedrock-protocol-lite';
-
-const bot = createClient({
-  host: "emerald.magmanode.com",
-  port: 33760,
-  username: "AFK_Bot", // يمكنك تغييره لأي اسم تريده
-  offline: false // إذا السيرفر لا يحتاج تسجيل Xbox، غيّرها إلى true
+// إعدادات البوت
+const client = createClient({
+  host: "emerald.magmanode.com",  // سيرفر ماينكرافت
+  port: 33760,                    // البورت
+  username: "BotAFK",             // اسم البوت
+  offline: true                   // وضع Offline Mode
 });
 
-// عند الاتصال بالسيرفر
-bot.on('connect', () => {
-  console.log(`[+] تم الاتصال بالسيرفر emerald.magmanode.com:33760`);
+// عند اتصال البوت بالسيرفر
+client.on("connect", () => {
+  console.log("✅ تم الاتصال بالسيرفر بنجاح!");
 });
 
-// عند انقطاع الاتصال
-bot.on('disconnect', (reason) => {
-  console.log(`[-] تم فصل الاتصال: ${reason}`);
+// عند استقبال رسالة من السيرفر
+client.on("text", (packet) => {
+  console.log("💬 رسالة من السيرفر:", packet.message);
 });
 
-// في حال حدوث خطأ
-bot.on('error', (err) => {
-  console.error(`[!] خطأ: ${err.message}`);
+// عند حدوث خطأ
+client.on("error", (err) => {
+  console.error("❌ حدث خطأ:", err);
 });
 
-// عند وصول رسالة في الشات
-bot.on('text', (packet) => {
-  console.log(`[CHAT] ${packet.source_name}: ${packet.message}`);
-});
-
-// وظيفة تبقي البوت نشطاً كل 30 ثانية
-setInterval(() => {
-  console.log(`[AFK] البوت مازال متصل وينتظر...`);
-}, 30000);
+// عند فصل الاتصال
+client.on("disconnect", (packet) => {
+  console.log("⚠️ تم قطع

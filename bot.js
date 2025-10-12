@@ -1,20 +1,25 @@
-# استخدم Node.js 20 رسمي
-FROM node:20
+const { createBot } = require('bedrock-protocol');
 
-# تثبيت الأدوات المطلوبة لبناء بعض الباكجات
-RUN apt-get update && apt-get install -y make g++ cmake python3
+const bot = createBot({
+  host: 'emerald.magmanode.com',
+  port: 33760,
+  username: 'BotFares'
+});
 
-# تثبيت cmake-js عالمياً
-RUN npm install -g cmake-js
+bot.on('spawn', () => {
+  console.log('✅ البوت دخل السيرفر بنجاح');
+});
 
-# تحديد مجلد العمل
-WORKDIR /app
+bot.on('kick', (reason) => {
+  console.log('⚠️ تم طرد البوت من السيرفر');
+  console.log('سبب الطرد:', reason);
+});
 
-# نسخ ملفات المشروع
-COPY . .
+bot.on('disconnect', (reason) => {
+  console.log('⚠️ تم قطع الاتصال بالسيرفر');
+  console.log('السبب:', reason);
+});
 
-# تثبيت جميع الحزم وإعادة بناء raknet-native
-RUN npm install && npm rebuild raknet-native --build-from-source
-
-# تشغيل البوت عند تشغيل الحاوية
-CMD ["node", "bot.js"]
+bot.on('message', (message) => {
+  console.log('💬 رسالة جديدة:', message.toString());
+});

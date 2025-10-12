@@ -4,12 +4,8 @@
   "description": "Minecraft Bedrock AFK bot",
   "main": "bot.js",
   "scripts": {
-    "build": "npm rebuild raknet-native --build-from-source",
     "start": "node bot.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bedrock-protocol": "^3.49.0"
   }

@@ -1,16 +1,16 @@
 {
   "name": "bedrock-bot",
   "version": "1.0.0",
-  "description": "Minecraft Bedrock AFK bot for Render",
+  "description": "Minecraft Bedrock AFK bot",
   "main": "bot.js",
-  "type": "module",
   "scripts": {
+    "build": "npm rebuild raknet-native --build-from-source",
     "start": "node bot.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "bedrock-protocol-lite": "^1.0.0"
-  },
-  "engines": {
-    "node": "20.x"
+    "bedrock-protocol": "^3.49.0"
   }
 }

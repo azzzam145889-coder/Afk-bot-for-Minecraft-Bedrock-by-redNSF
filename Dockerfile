@@ -1,20 +1,20 @@
-# استخدم Node 20
+# استخدم Node.js 20 رسمي
 FROM node:20
 
-# ثبّت الأدوات الأساسية
+# تثبيت الأدوات المطلوبة لبناء بعض الباكجات
 RUN apt-get update && apt-get install -y make g++ cmake python3
 
-# ثبّت cmake-js عالمياً
+# تثبيت cmake-js عالمياً
 RUN npm install -g cmake-js
 
-# إعداد مجلد العمل
+# تحديد مجلد العمل
 WORKDIR /app
 
-# نسخ المشروع
+# نسخ ملفات المشروع
 COPY . .
 
-# تثبيت الحزم وبناء raknet-native
+# تثبيت جميع الحزم وإعادة بناء raknet-native
 RUN npm install && npm rebuild raknet-native --build-from-source
 
-# أمر التشغيل
+# تشغيل البوت عند تشغيل الحاوية
 CMD ["node", "bot.js"]

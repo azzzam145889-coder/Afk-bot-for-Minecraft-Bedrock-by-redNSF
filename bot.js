@@ -2,9 +2,9 @@
 import { createBot } from 'bedrock-protocol';
 
 const bot = createBot({
-  host: 'YOUR_SERVER_IP',  // ضع الايبي هنا
-  port: 19132,             // بورت السيرفر
-  username: 'BOT_USERNAME' // اسم البوت
+  host: 'emerald.magmanode.com', // عنوان السيرفر
+  port: 33760,                   // بورت السيرفر
+  username: 'BotFares'           // اسم البوت (يمكن تغييره)
 });
 
 bot.on('spawn', () => {

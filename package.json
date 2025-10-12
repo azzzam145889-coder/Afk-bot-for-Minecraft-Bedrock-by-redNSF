@@ -1,19 +1,13 @@
 {
-  "name": "bedrock-bot",
+  "name": "minecraft-bedrock-bot",
   "version": "1.0.0",
-  "description": "Minecraft Bedrock AFK bot",
+  "description": "بوت Minecraft Bedrock باستخدام bedrock-protocol",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "bedrock-protocol": "^3.23.0"
-  },
-  "engines": {
-    "node": ">=20.0.0"
+    "bedrock-protocol": "^1.0.0",
+    "raknet-native": "^0.9.3"
   }
 }
-
